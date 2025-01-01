@@ -1,0 +1,65 @@
+@use './colors';
+
+.bar {
+  background: transparent;
+  color: var(--on_surface);
+  font-weight: bold;
+
+  .bar-container {
+    background: var(--surface);
+    border-radius: var(--shape-corner-full);
+    min-width: 3.25rem;
+    margin: .75rem 1rem .75rem .25rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+  }
+
+  .time {
+    font-weight: 900;
+    font-feature-settings: 'tnum';
+    line-height: .9;
+    background: var(--surface_container);
+    padding: .5rem;
+    border-radius: var(--shape-corner-full);
+  }
+
+  .workspaces {
+    // The unicode characters aren't centered correctly
+    margin-right: 4px;
+
+    .workspace-indicator {
+      color: var(--secondary_container);
+    }
+
+    .workspace-active {
+      color: var(--secondary);
+    }
+
+    .workspace-focused {
+      color: var(--primary);
+    }
+  }
+
+  .tray {
+    background: var(--surface_container);
+    border-radius: var(--shape-corner-full);
+    transition: background-color 250ms ease-out;
+
+    button {
+      background: transparent;
+    }
+  }
+
+  .shutdown {
+    color: var(--error);
+    margin-top: .5rem;
+
+    &:hover {
+      background: var(--error-state-layer-1);
+    }
+
+    &:active {
+      background: var(--error-state-layer-2);
+    }
+  }
+}

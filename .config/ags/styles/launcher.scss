@@ -1,0 +1,55 @@
+.launcher {
+  border-radius: 1rem;
+  margin: 3rem;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+  > box {
+    background: var(--surface_container);
+    color: var(--on_surface);
+
+    border-radius: 1rem;
+  }
+
+  entry {
+    background: var(--primary_container);
+    color: var(--on_primary_container);
+
+    margin: 1.25rem;
+    border-radius: var(--shape-corner-full);
+
+    outline: none;
+
+    border-bottom: solid 1px rgba(255, 255, 255, 0.07);
+    font-weight: 500;
+  }
+
+  .scroll-container {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .category {
+    > label {
+      color: var(--on_surface_variant);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: .5rem;
+      opacity: 0.75;
+    }
+
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: .5rem 1rem 1rem;
+    margin: 1px 1.5rem 1px 1px;
+  }
+
+  .application-item {
+    color: var(--on_surface_variant);
+    min-width: 8rem;
+
+    label {
+      font-size: 12px;
+    }
+  }
+}

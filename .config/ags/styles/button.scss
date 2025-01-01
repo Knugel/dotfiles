@@ -1,0 +1,35 @@
+.mat-button {
+  &.mat-button-tonal {
+    --mat-button-background: var(--secondary_container);
+    --mat-button-color: var(--on_secondary_container);
+
+    &:hover {
+      --mat-button-background: var(--secondary_container-layer-1);
+    }
+    &:active {
+      --mat-button-background: var(--secondary_container-layer-2);
+    }
+  }
+
+  &.mat-button-text {
+    --mat-button-background: transparent;
+    --mat-button-color: var(--primary);
+
+    &:hover {
+      --mat-button-background: var(--primary-state-layer-1);
+    }
+    &:active {
+      --mat-button-background: var(--primary-state-layer-2);
+    }
+  }
+
+  &.mat-icon-button {
+    padding: 0;
+    min-height: 2.571428571rem;
+    min-width: 2.571428571rem;
+  }
+
+  background: var(--mat-button-background);
+  color: var(--mat-button-text);
+  border-radius: var(--shape-corner-full);
+}

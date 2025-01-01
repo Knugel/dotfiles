@@ -1,0 +1,51 @@
+.notification-popup {
+  margin-top: 1rem;
+
+  box {
+    background-color: transparent;
+  }
+
+  .notification-container {
+    background: var(--surface_container);
+    padding: 1rem;
+    border-radius: 1rem;
+
+    .header {
+      button {
+        min-width: 1rem;
+        min-height: 1rem;
+        padding: 0.25rem;
+
+        image {
+          -gtk-icon-size: 14px;
+        }
+      }
+
+      label {
+        font-size: 12px;
+      }
+
+      .app-name {
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        padding: 0.5rem 0.5rem 0.5rem 0;
+      }
+
+      .time {
+        margin-right: .25rem;
+      }
+    }
+
+    .content {
+      font-size: 12px;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .actions button {
+      font-size: 12px;
+      padding: 0 0.5rem;
+    }
+  }
+}
+

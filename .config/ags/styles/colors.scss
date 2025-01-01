@@ -1,0 +1,137 @@
+@use 'sass:color';
+
+@function red($color) {
+    @return color.channel($color, 'red', $space: rgb);
+}
+
+@function green($color) {
+    @return color.channel($color, 'green', $space: rgb);
+}
+
+@function blue($color) {
+    @return color.channel($color, 'blue', $space: rgb);
+}
+
+@function elevate($layer, $base, $opacity) {
+  $r: red($base) + (red($layer) - red($base)) * $opacity;
+  $g: green($base) + (green($layer) - green($base)) * $opacity;
+  $b: blue($base) + (blue($layer) - blue($base)) * $opacity;
+  @return rgb($r, $g, $b);
+}
+
+@mixin elevations($layer, $base, $name) {
+    --#{$name}-layer-1: #{elevate($layer, $base, 0.08)};
+    --#{$name}-layer-2: #{elevate($layer, $base, 0.12)};
+    --#{$name}-layer-3: #{elevate($layer, $base, 0.16)};
+    --#{$name}-state-layer-1: #{rgba(red($base), green($base), blue($base), 0.08)};
+    --#{$name}-state-layer-2: #{rgba(red($base), green($base), blue($base), 0.12)};
+    --#{$name}-state-layer-3: #{rgba(red($base), green($base), blue($base), 0.16)};
+}
+$background: #11140f;
+$error: #ffb4ab;
+$error_container: #93000a;
+$inverse_on_surface: #2e322b;
+$inverse_primary: #406835;
+$inverse_surface: #e1e4da;
+$on_background: #e1e4da;
+$on_error: #690005;
+$on_error_container: #ffdad6;
+$on_primary: #12380b;
+$on_primary_container: #c1efaf;
+$on_primary_fixed: #012200;
+$on_primary_fixed_variant: #295020;
+$on_secondary: #263422;
+$on_secondary_container: #d7e8cc;
+$on_secondary_fixed: #121f0e;
+$on_secondary_fixed_variant: #3d4b37;
+$on_surface: #e1e4da;
+$on_surface_variant: #c3c8bc;
+$on_tertiary: #003739;
+$on_tertiary_container: #bcebee;
+$on_tertiary_fixed: #002021;
+$on_tertiary_fixed_variant: #1e4d50;
+$outline: #8d9387;
+$outline_variant: #43483f;
+$primary: #a5d395;
+$primary_container: #295020;
+$primary_fixed: #c1efaf;
+$primary_fixed_dim: #a5d395;
+$scrim: #000000;
+$secondary: #bbcbb1;
+$secondary_container: #3d4b37;
+$secondary_fixed: #d7e8cc;
+$secondary_fixed_dim: #bbcbb1;
+$shadow: #000000;
+$source_color: #1c2319;
+$surface: #11140f;
+$surface_bright: #363a34;
+$surface_container: #1d211b;
+$surface_container_high: #272b25;
+$surface_container_highest: #32362f;
+$surface_container_low: #191d17;
+$surface_container_lowest: #0c0f0a;
+$surface_dim: #11140f;
+$surface_tint: #a5d395;
+$surface_variant: #43483f;
+$tertiary: #a0cfd2;
+$tertiary_container: #1e4d50;
+$tertiary_fixed: #bcebee;
+$tertiary_fixed_dim: #a0cfd2;
+
+
+:root {
+    --background: #11140f;
+    --error: #ffb4ab;
+    --error_container: #93000a;
+    --inverse_on_surface: #2e322b;
+    --inverse_primary: #406835;
+    --inverse_surface: #e1e4da;
+    --on_background: #e1e4da;
+    --on_error: #690005;
+    --on_error_container: #ffdad6;
+    --on_primary: #12380b;
+    --on_primary_container: #c1efaf;
+    --on_primary_fixed: #012200;
+    --on_primary_fixed_variant: #295020;
+    --on_secondary: #263422;
+    --on_secondary_container: #d7e8cc;
+    --on_secondary_fixed: #121f0e;
+    --on_secondary_fixed_variant: #3d4b37;
+    --on_surface: #e1e4da;
+    --on_surface_variant: #c3c8bc;
+    --on_tertiary: #003739;
+    --on_tertiary_container: #bcebee;
+    --on_tertiary_fixed: #002021;
+    --on_tertiary_fixed_variant: #1e4d50;
+    --outline: #8d9387;
+    --outline_variant: #43483f;
+    --primary: #a5d395;
+    --primary_container: #295020;
+    --primary_fixed: #c1efaf;
+    --primary_fixed_dim: #a5d395;
+    --scrim: #000000;
+    --secondary: #bbcbb1;
+    --secondary_container: #3d4b37;
+    --secondary_fixed: #d7e8cc;
+    --secondary_fixed_dim: #bbcbb1;
+    --shadow: #000000;
+    --source_color: #1c2319;
+    --surface: #11140f;
+    --surface_bright: #363a34;
+    --surface_container: #1d211b;
+    --surface_container_high: #272b25;
+    --surface_container_highest: #32362f;
+    --surface_container_low: #191d17;
+    --surface_container_lowest: #0c0f0a;
+    --surface_dim: #11140f;
+    --surface_tint: #a5d395;
+    --surface_variant: #43483f;
+    --tertiary: #a0cfd2;
+    --tertiary_container: #1e4d50;
+    --tertiary_fixed: #bcebee;
+    --tertiary_fixed_dim: #a0cfd2;
+
+    @include elevations($on_secondary_container, $secondary_container, secondary_container);
+    @include elevations(black, $primary, primary);
+    @include elevations(black, $error, error);
+}
