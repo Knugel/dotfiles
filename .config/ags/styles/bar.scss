@@ -8,25 +8,33 @@
   .bar-container {
     background: var(--surface);
     border-radius: var(--shape-corner-full);
-    min-width: 3.25rem;
+    min-width: 50rem;
     margin: .75rem 1rem .75rem .25rem;
-    padding-bottom: .5rem;
-    padding-top: .5rem;
+    padding: .5rem;
   }
 
-  .time {
+  .date-time {
     font-weight: 900;
-    font-feature-settings: 'tnum';
-    line-height: .9;
-    background: var(--surface_container);
-    padding: .5rem;
-    border-radius: var(--shape-corner-full);
+    margin-left: 1rem;
+    border-radius: 8px;
+    font-family: Inter Display;
+
+    > box {
+      margin-top: -3px;
+    }
+
+    .date {
+      font-size: 8px;
+    }
+
+    .time {
+      font-size: 16px;
+      font-feature-settings: 'tnum';
+      margin-bottom: -3px;
+    }
   }
 
   .workspaces {
-    // The unicode characters aren't centered correctly
-    margin-right: 4px;
-
     .workspace-indicator {
       color: var(--secondary_container);
     }
@@ -44,9 +52,11 @@
     background: var(--surface_container);
     border-radius: var(--shape-corner-full);
     transition: background-color 250ms ease-out;
+    padding-left: 5px;
 
     button {
       background: transparent;
+      padding: 0 5px;
     }
   }
 

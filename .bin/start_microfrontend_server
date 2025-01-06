@@ -1,0 +1,6 @@
+#!/bin/bash
+SERVER_CMD=$(cat "$1/RunServer.cmd" | tail -n1)
+SERVER_PARAMS=${SERVER_CMD#*-- --}
+SERVER_PROJECT=$(ls "$1/Server" | grep .Startup)
+cd "$1/Server"
+dotnet run --project "$SERVER_PROJECT" "--$SERVER_PARAMS"

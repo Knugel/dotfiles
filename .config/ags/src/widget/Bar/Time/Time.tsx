@@ -3,16 +3,24 @@ import { Gtk } from 'astal/gtk4';
 
 export default function Time() {
 	const time = Variable('').poll(1000, 'date +%H:%M');
-	const date = Variable('').poll(60000, 'date "+%A, %d %B"');
+	const date = Variable('').poll(60000, 'date "+%a, %b %d"');
 
 	return (
-		<label
-			cssClasses={['time']}
-			halign={FILL}
-			justify={Gtk.Justification.CENTER}
-			wrap
-			tooltipText={bind(date)}
-			label={bind(time).as((time) => time.split(':').join('\n'))}
-		/>
+		<box vertical cssClasses={['date-time']} valign={FILL}>
+			<box vertical valign={CENTER}>
+				<label
+					cssClasses={['time']}
+					valign={CENTER}
+					justify={Gtk.Justification.CENTER}
+					label={bind(time)}
+				/>
+				<label
+					cssClasses={['date']}
+					valign={CENTER}
+					justify={Gtk.Justification.CENTER}
+					label={bind(date)}
+				/>
+			</box>
+		</box>
 	);
 }

@@ -16,6 +16,12 @@ export function toggleWindow(windowName: string) {
 	window.visible = !window.visible;
 }
 
+export function setWindowVisibility(windowName: string, visible: boolean) {
+	const window = App.get_window(windowName);
+	if (!window) return;
+	window.visible = visible;
+}
+
 export function combineClasses(
 	self: string[],
 	existing: string[] | Binding<string[]> | undefined,

@@ -1,4 +1,5 @@
 import { App, Astal } from 'astal/gtk4';
+import { setWindowVisibility } from '../../utils';
 
 export default function Trigger() {
 	return (
@@ -8,6 +9,7 @@ export default function Trigger() {
 			exclusivity={Astal.Exclusivity.NORMAL}
 			anchor={TOP}
 			application={App}
+			onHoverEnter={() => setWindowVisibility('bar', true)}
 		/>
 	);
 }

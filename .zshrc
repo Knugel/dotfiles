@@ -69,6 +69,7 @@ alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 alias cat='bat'
+alias smf='start_microfrontend'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -80,3 +81,6 @@ export NVS_HOME="$HOME/.nvs"
 # enable nvs auto switching
 nvs auto on
 nvs auto
+
+# Add to path
+path+=('/home/caan/.bin')

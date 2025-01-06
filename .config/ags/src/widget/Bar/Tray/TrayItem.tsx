@@ -1,8 +1,9 @@
 import type Tray from 'gi://AstalTray';
 import type Gdk from 'gi://Gdk?version=4.0';
 import type Gio from 'gi://Gio?version=2.0';
-import { Variable, bind } from 'astal';
-import { App, Gtk } from 'astal/gtk4';
+import { GObject, Variable, bind } from 'astal';
+import { App, Gtk, hook } from 'astal/gtk4';
+import { updateBarVisibility } from '../Bar';
 
 type Props = {
 	item: Tray.TrayItem;
@@ -14,7 +15,6 @@ function createMenu(model: Gio.MenuModel, actions: Gio.ActionGroup) {
 		Gtk.PopoverMenuFlags.NESTED,
 	);
 	menu.set_has_arrow(false);
-	menu.set_offset(-8, 0);
 	menu.insert_action_group('dbusmenu', actions);
 	return menu;
 }
@@ -24,21 +24,38 @@ export default function TrayItem({ item }: Props) {
 
 	const menu = Variable(createMenu(item.menuModel, item.actionGroup));
 
-	menu((menu) => {
-		menu.connect('notify::menu-model', () => {
+	function listenToMenuModelChange(menu: Gtk.PopoverMenu) {
+		hook(menu, menu, 'notify::menu-model', () => {
 			const newMenu = createMenu(item.menu_model, item.action_group);
 			menu.run_dispose();
 			menu.set(newMenu);
 		});
-	});
+	}
+
+	menu((menu) => listenToMenuModelChange(menu));
+	listenToMenuModelChange(menu.get());
+
+	function listenToActionGroupChange(menu: Gtk.PopoverMenu) {
+		hook(menu, menu, 'notify::action-group', () => {
+			const newMenu = createMenu(item.menu_model, item.action_group);
+			menu.run_dispose();
+			menu.set(newMenu);
+		});
+	}
+
+	menu((menu) => listenToActionGroupChange(menu));
+	listenToActionGroupChange(menu.get());
+
+	function listenToVisibilityChange(menu: Gtk.PopoverMenu) {
+		hook(menu, menu, 'notify::visible', () => {
+			updateBarVisibility(undefined, menu.visible);
+		});
+	}
 
 	menu((menu) => {
-		menu.connect('notify::action-group', () => {
-			const newMenu = createMenu(item.menu_model, item.action_group);
-			menu.run_dispose();
-			menu.set(newMenu);
-		});
+		listenToVisibilityChange(menu);
 	});
+	listenToVisibilityChange(menu.get());
 
 	function onButtonReleased(self: Gtk.MenuButton, event: Gdk.ButtonEvent) {
 		switch (event.get_button()) {
@@ -65,7 +82,7 @@ export default function TrayItem({ item }: Props) {
 			onButtonReleased={(self, event) => onButtonReleased(self, event)}
 			tooltipMarkup={bind(item, 'tooltipMarkup')}
 			popover={bind(menu)}
-			direction={Gtk.ArrowType.LEFT}
+			direction={Gtk.ArrowType.DOWN}
 			halign={CENTER}
 		>
 			<image gicon={bind(item, 'gicon')} />

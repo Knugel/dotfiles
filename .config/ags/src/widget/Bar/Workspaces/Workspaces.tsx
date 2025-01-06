@@ -25,15 +25,15 @@ export default function Workspaces() {
 	}
 
 	return (
-		<box halign={FILL} cssClasses={['workspaces']} spacing={4}>
+		<box valign={FILL} vexpand cssClasses={['workspaces']} spacing={8}>
 			{Array.from({ length: 5 }, (_, i) => i + 1).map((i) => (
 				<box
-					halign={CENTER}
+					valign={CENTER}
 					cssClasses={['workspace-indicator']}
 					setup={(self) => setup(self, i)}
 					onButtonReleased={() => hypr.dispatch('workspace', i.toString())}
 				>
-					<label halign={CENTER} label="" />
+					<label valign={CENTER} label="" />
 				</box>
 			))}
 		</box>
