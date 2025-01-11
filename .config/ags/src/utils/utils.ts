@@ -36,7 +36,7 @@ export function combineClasses(
 
 export function launch(item: AstalApps.Application) {
 	const app = item.app as Gio.DesktopAppInfo;
-	exec(`hyprctl dispatch exec uwsm app -- ${app.get_filename()}`);
+	app.launch([], null);
 	toggleWindow('launcher');
 }
 

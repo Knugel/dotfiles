@@ -61,7 +61,7 @@ final_space = true
     alignment="right"
     foreground = "lightCyan"
     background = "transparent"
-    template = "  {{ .Full }} {{ if (.Segments.Executiontime) }}<white>|</>{{end}}"
+    template = "  {{ .Full }} {{ if (.Segments.Executiontime) }}<white>|</>{{end}}"
 
 
   [[blocks.segments]]

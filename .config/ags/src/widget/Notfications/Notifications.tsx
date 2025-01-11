@@ -174,7 +174,7 @@ export default function NotificationWindow() {
 			cssClasses={['notification-popup']}
 			namespace={'notification-popup'}
 			application={App}
-			anchor={TOP}
+			anchor={TOP | RIGHT}
 		>
 			<NotificationList />
 		</window>
